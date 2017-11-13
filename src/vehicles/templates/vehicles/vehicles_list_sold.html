@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head_title %}Vehicles||{{ block.super }}{% endblock head_title %}
+{% block content %}
+<br>
+<h1>Sold Vehicles</h1>
+<ul>
+	{% for vehicle in vehicles_list %}
+	<li>
+		<a href="{% url 'vehicles:sold-details' slug=vehicle.slug %}">{{ vehicle }}
+		</a><br/>
+		{{ vehicle.registration_no }} {{ vehicle.timestamp }}
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}

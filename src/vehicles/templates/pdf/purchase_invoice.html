@@ -1,0 +1,334 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+{% comment %}
+<!-- css files -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title> Purchase Invoice </title>
+    font-family: 'Unica One', cursive;
+    <style type="text/css">
+    .invoice-box {
+        margin: auto;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: Helvetica;
+        color: #555;
+    }
+
+    .invoice-box table {
+        width: 100%;
+        line-height: 24px;
+        text-align: left;
+    }
+
+    .invoice-box table td {
+        vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #eee;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td{
+    }
+
+    .invoice-box table tr.item.last td {
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+        font-weight: bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+
+    /** RTL **/
+    
+    </style>
+{% endcomment %}
+    <style>
+        h1 { 
+            display: block;
+            font-size: 4em;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+        }
+        td { 
+            display: block;
+            font-size: 1.5em;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+            <h1><center>Joey's Garage</center></h1>
+        <table cellpadding="0" cellspacing="0">
+            
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td><centre>Model Colony, ShivajiNagar, Pune MH, India</centre></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td> Invoice No.: {{invoice_no}}<br>
+</td>
+                            
+                            <td>
+                                Date: {{ date_time.date }}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>
+                    <h2>
+                        Seller Details<br/>
+                    </h2>
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Name
+                </td>
+                
+                <td>
+                    {{ seller_full_name }}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Address
+                </td>
+                
+                <td>
+                    {{ seller_address }}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Adhaar Number
+                </td>
+                
+                <td>
+                    {{ seller_aadhar_no }}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Phone 
+                </td>
+                
+                <td>
+                    {{ seller_phone_no }}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Email 
+                </td>
+                
+                <td>
+                    {{ seller_email }}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>
+                    <h2>
+                        Vehicle's Details<br/>
+                    </h2>
+                </td>
+                
+                <td>
+                    
+                </td>
+            </tr>
+          
+            <tr class="item">
+                <td>
+                    Manufacturer
+                </td>
+                
+                <td>
+                    {{ vehicle_manufacturer }}
+                </td>
+            </tr>
+             
+            <tr class="item">
+                <td>
+                    Model Name
+                </td>
+                
+                <td>
+                    {{ vehicle_model_name }}
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    Model Year
+                </td>
+                
+                <td>
+                    {{ vehicle_model_year }}
+                </td>
+            </tr>
+           
+            <tr class="item">
+                <td>
+                    Color
+                </td>
+                
+                <td>
+                    Green
+                </td>
+            </tr>
+            <tr class="item">
+                <td>
+                    Chassis No. 
+                </td>
+                
+                <td>
+                    {{ vehicle_chassis_no }}
+                </td>
+            </tr>
+             <tr class="item last">
+                <td>
+                    Registration No.
+                </td>
+                
+                <td>
+                    {{ vehicle_registration_no }}
+                </td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                    <h2>
+                        Amount Purchased : {{ amount_purchased }} (INR)
+                    </h2>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+{% comment %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+     <head>
+         <title>Title</title>
+         <style type="text/css">
+             body {
+                 font-weight: 200;
+                 font-size: 14px;
+             }
+             .header {
+                 font-size: 20px;
+                 font-weight: 100;
+                 text-align: center;
+                 color: #007cae;
+             }
+             .title {
+                 font-size: 22px;
+                 font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 20px 0px 20px;  
+             }
+             .title span {
+                 color: #007cae;
+             }
+             .details {
+                 padding: 10px 20px 0px 20px;
+                 text-align: left !important;
+                 /*margin-left: 40%;*/
+             }
+             .hrItem {
+                 border: none;
+                 height: 1px;
+                 /* Set the hr color */
+                 color: #333; /* old IE */
+                 background-color: #fff; /* Modern Browsers */
+             }
+         </style>
+     </head>
+     <body>
+         <div class='wrapper'>
+             <div class='header'>
+                 <p class='title'>Invoice # </p>
+             </div>
+         <div>
+         <div class='details'>
+             {{ seller_full_name }} <br/>
+             {{ seller_phone_no }} <br/>
+             {{ seller_email }} <br/>
+             {{ seller_address }} <br/>
+             {{ seller_aadhar_no }} <br/>
+             {{ vehicle_manufacturer }} <br/>
+             {{ vehicle_model_name }} <br/>
+             {{ vehicle_model_year }} <br/>
+             {{ vehicle_registration_no }} <br/>
+             {{ vehicle_chassis_no }} <br/>
+             {{ amount_purchased }} <br/>
+             {{ date_time.date }} <br/>
+             {{ invoice_no }} <br/>
+             Bill to: {{ seller_full_name }} <br/>
+             Amount:  {{ seller_phone_no }} <br/>
+             Date: 
+             <hr class='hrItem' />
+         </div>
+     </div>
+     </body>
+ </html>
+ {% endcomment %}

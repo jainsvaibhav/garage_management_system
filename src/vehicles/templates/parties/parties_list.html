@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head_title %}Party||{{ block.super }}{% endblock head_title %}
+{% block content %}
+<br>
+<h1>Parties List</h1>
+{% comment %}
+<h4>
+<a href="/vehicles/add-vehicle/">Add another vehicle</a>
+</h4>
+{% endcomment %}
+<h3>
+	Sellers
+</h3>
+<ul>
+	{% for party in parties_list %}
+		{% if party.is_seller %}
+		<li>
+			<h5>
+				<a href="{% url 'parties:seller-details' slug=party.slug %}">
+					{{ party }}
+				</a><br/>
+			</h5>
+		</li>
+		{% endif %}
+{% endfor %}
+</ul>
+<h3>
+	Buyers
+</h3>
+<ul>
+	{% for party in parties_list %}
+		{% if party.is_buyer %}
+		<li>
+			<h5>
+				<a href="{% url 'parties:buyer-details' slug=party.slug %}">
+					{{ party }}
+				</a><br/>
+			</h5>
+		</li>
+		{% endif %}
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load mathfilters %}
+{% block head_title %}Vehicles||{{ block.super }}{% endblock head_title %}
+{% block content %}
+<h1>
+	{{ vehicle.model_name }}
+</h1>
+<h3>
+	{{ vehicle.manufacturer }}
+</h3>
+<p>
+	model year -> {{ vehicle.model_year }}
+</p>
+<p>
+	registration no -> {{ vehicle.registration_no }}
+</p>
+<p>
+	color -> {{ vehicle.color }}
+</p>
+<p>
+	<h3>
+		purchased from 
+		<a href="{% url 'parties:seller-details' slug=bill_p.party_purchased.slug %}">
+			{{ bill_p.party_purchased.full_name }}
+		</a><br/>
+		<h4>
+			at
+		</h4>
+		<h3>
+			Rs. {{ bill_p.amount_purchased}}
+		</h3>
+	</h3>
+	<h4>
+		expense :- Rs. {{ bill_p.expense }}
+
+	</h4>
+	<br>
+	<h3>
+		<strong>
+			To be sold at
+			Rs. {{ bill_p.valuation_amount}}
+		</strong>
+	</h3>
+
+</p>
+{% if vehicle.is_sold %}
+	<h1>
+		AND
+	</h1>
+    <p>
+    	<h3>
+		sold to 
+		<a href="{% url 'parties:buyer-details' slug=bill_s.party_sold.slug %}">
+			{{ bill_s.party_sold.full_name }}
+		</a><br/>
+		<h4>
+			at
+		</h4>
+		<h3>
+			Rs. {{ bill_s.amount_sold}}
+		</h3>
+		<h2>
+			Net Profit:- {{ bill_s.amount_sold|sub:bill_p.amount_purchased|sub:bill_p.expense}}
+		</h2>
+	</h3>
+	
+	</p>
+	<h4><center>
+	<a href="{% url 'vehicles:invoice-sales-print' vehicle.slug  %}">
+    <button type="submit" class="btn btn-default btn-sm">
+    	Print Sales Invoice
+    </button>
+	</a>
+    </form>
+    </center>
+</h4>
+
+{% endif %}
+{% if not vehicle.is_sold %}
+<h4><center>
+	<form action="{% url 'vehicles:vehicle-update' vehicle.slug  %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-default btn-sm">
+    	Update Vehicle Details
+    </button>
+    </form>
+    </center>
+</h4>
+<h4><center>
+	<form action="{% url 'vehicles:vehicle-delete' vehicle.slug %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-default btn-sm">
+            Delete Vehicle from Garage
+        </button>
+    </form>
+    </center>
+           
+</h4>
+<h4>
+	<center>
+	<a href="{% url 'vehicles:invoice-purchase-print' vehicle.slug  %}">
+    <button type="submit" class="btn btn-default btn-sm">
+    	Print Invoice
+    </button>
+	</a>
+    </form>
+    </center>
+</h4>
+{% comment %}
+<h4>
+	<a href="{% url 'vehicles:invoice-purchase-download' vehicle.slug  %}">
+    <button type="submit" class="btn btn-default btn-sm">
+    	Download Invoice
+    </button>
+	</a>
+    </form>
+</h4>
+<h4>
+	<form action="{% url 'vehicles:invoice-purchase-update' vehicle.slug  %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-default btn-sm">
+    	Update Accounts
+    </button>
+    </form>
+</h4>
+{% endcomment %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div style="padding-top: 2%"></div>
+
+<div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="thumbnail text-center">
+            <h2>User Profile Photo goes here</h2>
+        </div> <!-- ./thumbnail -->
+    </div> <!-- ./column -->
+</div> <!-- ./container -->
+
+<div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <!-- <div class="thumbnail"> -->
+            <h3>User Profile:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h4><b class="col-sm-4 col-xs-4">Username: </b> {{ username }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <h4><b class="col-sm-4 col-xs-4">Name: </b> {{ first_name }} {{ last_name }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <h4><b class="col-sm-4 col-xs-4">Email: </b> {{ email }}</h4>
+                </li>
+            </ul>
+        <!-- </div> ./thumbnail -->
+    </div> <!-- ./column -->
+    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+        <h3>Change User Settings:</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h4><b class="col-sm-4 col-xs-4">Change Name: </b> <a href="/accounts/change-name/">Link</a></h4>
+            </li>
+            <li class="list-group-item">
+                <h4><b class="col-sm-4 col-xs-4">Change Email: </b> <a href="/accounts/change-email/">Link</a></h4>
+            </li>
+            <li class="list-group-item">
+                <h4><b class="col-sm-4 col-xs-4">Change Password: </b> <a href="/accounts/change-password/">Link</a></h4>
+            </li>
+        </ul>
+    </div> <!-- ./column -->
+</div> <!-- ./container -->
+
+{% endblock %}

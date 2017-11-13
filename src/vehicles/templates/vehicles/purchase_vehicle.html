@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head_title %}Purchase Vehicle||{{ block.super }}{% endblock head_title %}
+{% block content %}
+<br>
+<a href="{% url 'vehicles:add-vehicle' %}">
+	<h2>
+		Add Vehicle
+	</h2>
+</a><br>
+</li>
+<a href="{% url 'vehicles:add-party' %}">
+	<h2>
+		Add Seller
+	</h2>
+</a><br/>
+<a href="{% url 'vehicles:invoice-purchase' %}">
+	<h2>
+		Generate Invoice
+	</h2>
+</a><br/>
+{% endblock %}

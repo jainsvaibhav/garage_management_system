@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block head_title %}Parties||{{ block.super }}{% endblock head_title %}
+{% block content %}
+<br>
+<h1>{{ party.full_name }}</h1>
+{% if party.is_seller %}
+    <p>
+    	<h3>
+    		Seller
+    	</h3> 
+    	<h4>
+    		sold {{ party.vehicle_detail.model_name }}
+    		at
+    		Rs. {{ bill.amount_purchased}}
+    	</h4>
+    	<h4>
+    		Expense on vehicle:- Rs. {{ bill.expense}}
+    	</h4>
+    	<h5>
+    		{{ party.vehicle_detail.registration_no}}
+    	</h5>
+    	<h3>
+			Net Amount Spent:- {{ bill.amount_purchased|add:bill.expense}}
+		</h3>
+	</p>
+
+	<h4>
+		<form action="{% url 'parties:seller-update' party.slug  %}" method="post" style="display: inline;">
+	    {% csrf_token %}
+	    <button type="submit" class="btn btn-default btn-sm">
+	    	Update Seller Details
+	    </button>
+	    </form>
+	</h4>
+
+{% elif party.is_buyer %}
+    <p>
+    	<h3>
+    		Buyer
+    	</h3> 
+    	<h4>
+    		bought {{ party.vehicle_detail.model_name }}
+    		at
+    		Rs. {{ bill.amount_sold}}
+    	</h4>
+    	<h5>
+    		{{ party.vehicle_detail.registration_no}}
+    	</h5>
+	</p>
+{% endif %}
+
+{% endblock %}
